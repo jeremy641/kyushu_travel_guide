@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>北九州五日遊行程表 | 2025年9月8-12日</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Microsoft JhengHei', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 30px;
+            padding: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border: 1px solid #e2e8f0;
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #64748b;
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: #f1f5f9;
+            color: #475569;
+        }
+
+        /* 開啟Excel按鈕樣式 */
+        .excel-section {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .excel-btn {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .excel-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+
+        .excel-btn:active {
+            transform: translateY(0);
+        }
+
+        .excel-btn::before {
+            content: '📊';
+            font-size: 16px;
+        }
+
+        /* Modal 樣式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 2% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 95%;
+            height: 90%;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-title::before {
+            content: '📊';
+            font-size: 1.5rem;
+        }
+
+        .close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 0;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.1);
+        }
+
+        .excel-iframe {
+            width: 100%;
+            height: calc(100% - 80px);
+            border: none;
+            border-radius: 0 0 12px 12px;
+        }
+
+        /* Excel 按鈕組 */
+        .excel-buttons {
+            position: absolute;
+            top: 20px;
+            right: 80px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .excel-action-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #4f46e5;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .excel-action-btn:hover {
+            background: white;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* 在hero區域添加開啟Excel提示 */
+        .hero-excel {
+            margin-top: 30px;
+            padding: 15px 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-excel:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-excel span {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .hero-excel span::before {
+            content: '📋';
+            font-size: 20px;
+        }
+
+        .day-section {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .day-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .jr-pass-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .day-content {
+            padding: 40px;
+        }
+
+        .activity-item {
+            display: flex;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .activity-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .time-badge {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-right: 30px;
+            min-width: 140px;
+            text-align: center;
+            height: fit-content;
+            border: 2px solid #e2e8f0;
+        }
+
+        .activity-details {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+
+        .activity-info {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 10px;
+        }
+
+        .transport-tag {
+            background: #dcfce7;
+            color: #15803d;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #bbf7d0;
+        }
+
+        .note {
+            color: #64748b;
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        .info-sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-card h3::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 3px;
+            margin-right: 15px;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .info-list li::before {
+            content: '•';
+            color: #667eea;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 15px;
+            line-height: 1;
+        }
+
+        .food-section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #e2e8f0;
+            margin-top: 40px;
+        }
+
+        .food-section h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+        }
+
+        .food-section h3::before {
+            content: '🍜';
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .food-item {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .food-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .food-location {
+            font-weight: 700;
+            color: #4f46e5;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .food-dish {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .footer {
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 60px 0;
+            margin-top: 80px;
+        }
+
+        .footer h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .footer p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        /* Language specific content */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        /* Print Styles */
+        @media print {
+            .language-switcher,
+            .excel-section {
+                display: none;
+            }
+            
+            body {
+                background: white;
+            }
+            
+            .hero {
+                background: #4f46e5 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .day-section {
+                page-break-inside: avoid;
+                margin-bottom: 30px;
+            }
+            
+            .day-header {
+                background: #4f46e5 !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .excel-section {
+                top: 70px;
+                right: 10px;
+            }
+
+            .excel-btn {
+                padding: 10px 16px;
+                font-size: 12px;
+            }
+
+            .modal-content {
+                width: 98%;
+                height: 95%;
+                margin: 1% auto;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-title {
+                font-size: 1.2rem;
+            }
+
+            .excel-buttons {
+                position: static;
+                margin: 10px 20px;
+                justify-content: flex-end;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-excel {
+                margin-top: 20px;
+                padding: 12px 20px;
+            }
+            
+            .day-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 25px 20px;
+            }
+            
+            .day-content {
+                padding: 25px 20px;
+            }
+            
+            .activity-item {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .time-badge {
+                margin-right: 0;
+                width: fit-content;
+            }
+            
+            .activity-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .info-sections {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .info-card {
+                padding: 25px;
+            }
+            
+            .food-section {
+                padding: 25px;
+            }
+            
+            .food-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" onclick="switchLanguage('zh')">中文</button>
+        <button class="lang-btn" onclick="switchLanguage('ja')">日本語</button>
+    </div>
+
+    <!-- Excel Section -->
+    <div class="excel-section">
+        <button class="excel-btn" onclick="openExcel()">
+            <span class="zh-text">開啟Excel行程表</span>
+            <span class="ja-text" style="display: none;">Excel行程表を開く</span>
+        </button>
+    </div>
+
+    <!-- Excel Modal -->
+    <div id="excelModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <span class="zh-text">北九州五日行程表</span>
+                    <span class="ja-text" style="display: none;">北九州5日間の行程表</span>
+                </div>
+                <div class="excel-buttons">
+                    <a href="北九州五日行程單.xlsx" download="北九州五日行程單.xlsx" class="excel-action-btn">
+                        💾 <span class="zh-text">下載</span><span class="ja-text" style="display: none;">ダウンロード</span>
+                    </a>
+                    <a href="北九州五日行程單.xlsx" target="_blank" class="excel-action-btn">
+                        🔗 <span class="zh-text">新視窗開啟</span><span class="ja-text" style="display: none;">新しいウィンドウで開く</span>
+                    </a>
+                </div>
+                <button class="close" onclick="closeExcel()">&times;</button>
+            </div>
+            <iframe id="excelFrame" class="excel-iframe" src=""></iframe>
+        </div>
+    </div>
+
+    <!-- Chinese Content -->
+    <div class="lang-content active" id="zh-content">
+        <div class="hero">
+            <div class="container">
+                <h1>🇯🇵 北九州五日遊</h1>
+                <p>2025年9月8日 - 9月12日</p>
+                <div class="hero-excel" onclick="openExcel()">
+                    <span>開啟Excel詳細行程表</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Day 1 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Day 1 | 9/8（一）：抵達福岡 → 市區輕遊</div>
+                    <div class="jr-pass-badge">JR PASS：不使用</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">13:05</div>
+                        <div class="activity-details">
+                            <div class="activity-title">抵達福岡機場，等候同行成員</div>
+                            <div class="note">入境手續、領取行李</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">13:05-16:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">機場區域輕鬆閒逛</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">步行</div>
+                            </div>
+                            <div class="note">推薦拉麵滑走路美食街，體驗日本美食</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">16:30-17:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">前往飯店入住（博多／天神）</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">地鐵或計程車</div>
+                            </div>
+                            <div class="note">辦理入住手續，整理行李</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">晚間</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多運河城逛街 + 晚餐</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">市區移動</div>
+                            </div>
+                            <div class="note">可至中洲屋台體驗傳統屋台文化，品嘗博多拉麵</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Day 2 | 9/9（二）：北九州一日遊</div>
+                    <div class="jr-pass-badge">JR PASS：Day 1 啟用</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">08:00-09:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 小倉</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR普通或快速（在來線）</div>
+                            </div>
+                            <div class="note">避開山陽新幹線，使用一般JR線路</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">09:00-12:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">小倉城、旦過市場午餐</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">步行</div>
+                            </div>
+                            <div class="note">參觀小倉城天守閣，在旦過市場享受當地美食</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">12:30-14:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">小倉 → 門司港，懷舊區散策 + 燒咖哩</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR本線</div>
+                            </div>
+                            <div class="note">約15分鐘車程，體驗明治時代的懷舊風情</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">15:00-21:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">皿倉山夜景（纜車）</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR + 計程車 + 纜車</div>
+                            </div>
+                            <div class="note">先到八幡站轉計程車，纜車最晚上行21:20，欣賞新日本三大夜景</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">21:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">皿倉山 → 博多</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR新幹線（指定席建議）</div>
+                            </div>
+                            <div class="note">結束充實的北九州一日遊</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Day 3 | 9/10（三）：長崎 + 佐世保</div>
+                    <div class="jr-pass-badge">JR PASS：Day 2</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">07:30-09:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 長崎</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR特急Relay + 西九州新幹線</div>
+                            </div>
+                            <div class="note">約1.5小時，體驗最新的西九州新幹線</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">09:30-13:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">長崎觀光：大浦天主堂、哥拉巴園、出島、眼鏡橋 + 午餐</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">步行</div>
+                            </div>
+                            <div class="note">探索長崎的異國風情，推薦品嘗正宗長崎ちゃんぽん</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">13:10-14:40</div>
+                        <div class="activity-details">
+                            <div class="activity-title">長崎 → 佐世保</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR特急/快速</div>
+                            </div>
+                            <div class="note">約1.5小時車程</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">14:30-17:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">佐世保：九十九島遊船 + 佐世保漢堡</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">步行／船</div>
+                            </div>
+                            <div class="note">推薦搭15:00班次遊船，欣賞九十九島美景，品嘗著名佐世保漢堡</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">18:30-20:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">佐世保 → 博多</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR特急みどり</div>
+                            </div>
+                            <div class="note">約2小時返回博多</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Day 4 | 9/11（四）：佐賀 + 太宰府</div>
+                    <div class="jr-pass-badge">JR PASS：Day 3</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">08:00-10:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 佐賀市觀光</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR</div>
+                            </div>
+                            <div class="note">參觀佐賀城本丸歷史館，了解佐賀藩的歷史</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">10:30-13:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">佐賀 → 太宰府</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">西鐵（需自費）</div>
+                            </div>
+                            <div class="note">參拜太宰府天滿宮，參觀九州國立博物館（17:00閉館）</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">13:30-17:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">太宰府 → 福岡市 → 天神</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">西鐵 + 步行</div>
+                            </div>
+                            <div class="note">天神地下街購物，品嘗梅枝餅，百貨公司採買</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">晚上</div>
+                        <div class="activity-details">
+                            <div class="activity-title">自由活動或休息</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">市區移動</div>
+                            </div>
+                            <div class="note">享受在日本的最後一晚，可選擇溫泉或按摩放鬆</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">Day 5 | 9/12（五）：福岡市區慢遊 → 機場返台</div>
+                    <div class="jr-pass-badge">JR PASS：不使用</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">08:30-11:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">飯店退房、收拾行李 + 最後採買</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">步行</div>
+                            </div>
+                            <div class="note">天神／博多最後採買或拉麵巡禮，購買伴手禮</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">11:00-11:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 福岡機場（國際線）</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">地鐵或巴士</div>
+                            </div>
+                            <div class="note">預留充足時間前往機場</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">11:30-13:55</div>
+                        <div class="activity-details">
+                            <div class="activity-title">機場手續 → 登機起飛</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">航空</div>
+                            </div>
+                            <div class="note">Check-in、安檢、出境、免稅店購物，13:55起飛返台</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Sections -->
+            <div class="info-sections">
+                <div class="info-card">
+                    <h3>JR PASS 使用規劃</h3>
+                    <ul class="info-list">
+                        <li><strong>Day 1 (9/8)</strong>：不啟用，使用地鐵和市區交通</li>
+                        <li><strong>Day 2 (9/9)</strong>：JR PASS Day 1 啟用</li>
+                        <li><strong>Day 3 (9/10)</strong>：JR PASS Day 2</li>
+                        <li><strong>Day 4 (9/11)</strong>：JR PASS Day 3</li>
+                        <li><strong>Day 5 (9/12)</strong>：不使用 JR PASS</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>重要交通提醒</h3>
+                    <ul class="info-list">
+                        <li>太宰府需搭乘西鐵，JR PASS無法使用，需另外付費</li>
+                        <li>皿倉山纜車最晚上行時間為21:20，請注意時間安排</li>
+                        <li>新幹線建議預約指定席，特別是返回博多的班次</li>
+                        <li>九十九島遊船推薦搭15:00班次最合適</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Food Recommendations -->
+            <div class="food-section">
+                <h3>各地美食推薦</h3>
+                <div class="food-grid">
+                    <div class="food-item">
+                        <div class="food-location">福岡</div>
+                        <div class="food-dish">博多拉麵、屋台文化、明太子</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">小倉</div>
+                        <div class="food-dish">旦過市場當地美食、小倉牛</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">門司港</div>
+                        <div class="food-dish">燒咖哩、門司港啤酒</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">長崎</div>
+                        <div class="food-dish">長崎ちゃんぽん、皿烏龍麵</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">佐世保</div>
+                        <div class="food-dish">佐世保漢堡、檸檬牛排</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">太宰府</div>
+                        <div class="food-dish">梅枝餅、抹茶甜品</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="container">
+                <h2>🌸 祝您北九州之旅愉快！🌸</h2>
+                <p>願這趟旅程留下美好回憶</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Japanese Content -->
+    <div class="lang-content" id="ja-content">
+        <div class="hero">
+            <div class="container">
+                <h1>🇯🇵 北九州5日間の旅</h1>
+                <p>2025年9月8日 - 9月12日</p>
+                <div class="hero-excel" onclick="openExcel()">
+                    <span>Excel詳細行程表を開く</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Day 1 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">1日目 | 9/8（月）：福岡到着 → 市内観光</div>
+                    <div class="jr-pass-badge">JR PASS：使用しません</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">13:05</div>
+                        <div class="activity-details">
+                            <div class="activity-title">福岡空港到着、同行者と合流</div>
+                            <div class="note">入国手続き、荷物受取</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">13:05-16:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">空港内散策</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">徒歩</div>
+                            </div>
+                            <div class="note">ラーメン滑走路フードコートがおすすめ</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">16:30-17:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">ホテルチェックイン（博多・天神）</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">地下鉄またはタクシー</div>
+                            </div>
+                            <div class="note">チェックイン手続き、荷物整理</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">夜</div>
+                        <div class="activity-details">
+                            <div class="activity-title">キャナルシティ博多ショッピング + 夕食</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">市内移動</div>
+                            </div>
+                            <div class="note">中洲屋台で伝統的な屋台文化を体験、博多ラーメンを堪能</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 2 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">2日目 | 9/9（火）：北九州日帰り観光</div>
+                    <div class="jr-pass-badge">JR PASS：1日目使用開始</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">08:00-09:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 小倉</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR普通・快速（在来線）</div>
+                            </div>
+                            <div class="note">山陽新幹線を避けて、一般JR線利用</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">09:00-12:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">小倉城、旦過市場で昼食</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">徒歩</div>
+                            </div>
+                            <div class="note">小倉城天守閣見学、旦過市場で地元グルメを堪能</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">12:30-14:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">小倉 → 門司港、レトロ地区散策 + 焼きカレー</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR本線</div>
+                            </div>
+                            <div class="note">約15分、明治時代のレトロな雰囲気を体験</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">15:00-21:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">皿倉山夜景（ケーブルカー）</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR + タクシー + ケーブルカー</div>
+                            </div>
+                            <div class="note">八幡駅からタクシー、ケーブルカー最終上り21:20、新日本三大夜景を鑑賞</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">21:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">皿倉山 → 博多</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR新幹線（指定席推奨）</div>
+                            </div>
+                            <div class="note">充実した北九州日帰り観光終了</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 3 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">3日目 | 9/10（水）：長崎 + 佐世保</div>
+                    <div class="jr-pass-badge">JR PASS：2日目</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">07:30-09:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 長崎</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR特急リレーかもめ + 西九州新幹線</div>
+                            </div>
+                            <div class="note">約1.5時間、最新の西九州新幹線を体験</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">09:30-13:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">長崎観光：大浦天主堂、グラバー園、出島、眼鏡橋 + 昼食</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">徒歩</div>
+                            </div>
+                            <div class="note">長崎の異国情緒を探索、本場の長崎ちゃんぽんがおすすめ</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">13:10-14:40</div>
+                        <div class="activity-details">
+                            <div class="activity-title">長崎 → 佐世保</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR特急・快速</div>
+                            </div>
+                            <div class="note">約1.5時間</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">14:30-17:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">佐世保：九十九島遊覧船 + 佐世保バーガー</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">徒歩・船</div>
+                            </div>
+                            <div class="note">15:00便の遊覧船がおすすめ、九十九島の美景を鑑賞、有名な佐世保バーガーを堪能</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">18:30-20:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">佐世保 → 博多</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR特急みどり</div>
+                            </div>
+                            <div class="note">約2時間で博多へ戻る</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 4 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">4日目 | 9/11（木）：佐賀 + 太宰府</div>
+                    <div class="jr-pass-badge">JR PASS：3日目</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">08:00-10:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 佐賀市観光</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">JR</div>
+                            </div>
+                            <div class="note">佐賀城本丸歴史館見学、佐賀藩の歴史を学ぶ</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">10:30-13:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">佐賀 → 太宰府</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">西鉄（自費）</div>
+                            </div>
+                            <div class="note">太宰府天満宮参拝、九州国立博物館見学（17:00閉館）</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">13:30-17:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">太宰府 → 福岡市 → 天神</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">西鉄 + 徒歩</div>
+                            </div>
+                            <div class="note">天神地下街でショッピング、梅ヶ枝餅を堪能、デパートで買い物</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">夜</div>
+                        <div class="activity-details">
+                            <div class="activity-title">自由行動または休息</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">市内移動</div>
+                            </div>
+                            <div class="note">日本での最後の夜を満喫、温泉やマッサージでリラックスも可能</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Day 5 -->
+            <div class="day-section">
+                <div class="day-header">
+                    <div class="day-title">5日目 | 9/12（金）：福岡市内散策 → 空港出発</div>
+                    <div class="jr-pass-badge">JR PASS：使用しません</div>
+                </div>
+                <div class="day-content">
+                    <div class="activity-item">
+                        <div class="time-badge">08:30-11:00</div>
+                        <div class="activity-details">
+                            <div class="activity-title">ホテルチェックアウト、荷物整理 + 最後の買い物</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">徒歩</div>
+                            </div>
+                            <div class="note">天神・博多で最後の買い物やラーメン巡り、お土産購入</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">11:00-11:30</div>
+                        <div class="activity-details">
+                            <div class="activity-title">博多 → 福岡空港（国際線）</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">地下鉄またはバス</div>
+                            </div>
+                            <div class="note">空港まで十分な時間を確保</div>
+                        </div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="time-badge">11:30-13:55</div>
+                        <div class="activity-details">
+                            <div class="activity-title">空港手続き → 搭乗・出発</div>
+                            <div class="activity-info">
+                                <div class="transport-tag">航空</div>
+                            </div>
+                            <div class="note">チェックイン、保安検査、出国、免税店でショッピング、13:55出発</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Sections -->
+            <div class="info-sections">
+                <div class="info-card">
+                    <h3>JR PASS 使用計画</h3>
+                    <ul class="info-list">
+                        <li><strong>1日目 (9/8)</strong>：使用開始せず、地下鉄と市内交通を利用</li>
+                        <li><strong>2日目 (9/9)</strong>：JR PASS 1日目使用開始</li>
+                        <li><strong>3日目 (9/10)</strong>：JR PASS 2日目</li>
+                        <li><strong>4日目 (9/11)</strong>：JR PASS 3日目</li>
+                        <li><strong>5日目 (9/12)</strong>：JR PASS使用せず</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h3>重要な交通情報</h3>
+                    <ul class="info-list">
+                        <li>太宰府は西鉄利用、JR PASSは使用不可、別途料金が必要</li>
+                        <li>皿倉山ケーブルカーの最終上り時間は21:20、時間にご注意</li>
+                        <li>新幹線は指定席の予約を推奨、特に博多行きの便</li>
+                        <li>九十九島遊覧船は15:00便がおすすめ</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Food Recommendations -->
+            <div class="food-section">
+                <h3>各地のグルメ情報</h3>
+                <div class="food-grid">
+                    <div class="food-item">
+                        <div class="food-location">福岡</div>
+                        <div class="food-dish">博多ラーメン、屋台文化、明太子</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">小倉</div>
+                        <div class="food-dish">旦過市場の地元グルメ、小倉牛</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">門司港</div>
+                        <div class="food-dish">焼きカレー、門司港ビール</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">長崎</div>
+                        <div class="food-dish">長崎ちゃんぽん、皿うどん</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">佐世保</div>
+                        <div class="food-dish">佐世保バーガー、レモンステーキ</div>
+                    </div>
+                    <div class="food-item">
+                        <div class="food-location">太宰府</div>
+                        <div class="food-dish">梅ヶ枝餅、抹茶スイーツ</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="container">
+                <h2>🌸 素晴らしい北九州の旅をお楽しみください！🌸</h2>
+                <p>この旅が素敵な思い出になりますように</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Hide all content
+            const allContent = document.querySelectorAll('.lang-content');
+            allContent.forEach(content => content.classList.remove('active'));
+            
+            // Show selected language content
+            document.getElementById(lang + '-content').classList.add('active');
+            
+            // Update button states
+            const allButtons = document.querySelectorAll('.lang-btn');
+            allButtons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Update document language
+            document.documentElement.lang = lang === 'zh' ? 'zh-TW' : 'ja';
+            
+            // Update UI text
+            const zhTexts = document.querySelectorAll('.zh-text');
+            const jaTexts = document.querySelectorAll('.ja-text');
+            
+            if (lang === 'zh') {
+                zhTexts.forEach(el => el.style.display = 'inline');
+                jaTexts.forEach(el => el.style.display = 'none');
+            } else {
+                zhTexts.forEach(el => el.style.display = 'none');
+                jaTexts.forEach(el => el.style.display = 'inline');
+            }
+        }
+
+        function openExcel() {
+            const modal = document.getElementById('excelModal');
+            const iframe = document.getElementById('excelFrame');
+            
+            // 使用 Microsoft Office Online 查看器
+            const excelUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + 
+                            encodeURIComponent(window.location.origin + '/北九州五日行程單.xlsx');
+            
+            iframe.src = excelUrl;
+            modal.style.display = 'block';
+            
+            // 防止背景滾動
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeExcel() {
+            const modal = document.getElementById('excelModal');
+            const iframe = document.getElementById('excelFrame');
+            
+            modal.style.display = 'none';
+            iframe.src = '';
+            
+            // 恢復背景滾動
+            document.body.style.overflow = 'auto';
+        }
+
+        // 點擊模態框背景關閉
+        window.onclick = function(event) {
+            const modal = document.getElementById('excelModal');
+            if (event.target === modal) {
+                closeExcel();
+            }
+        }
+
+        // ESC 鍵關閉模態框
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeExcel();
+            }
+        });
+    </script>
+</body>
+</html>
