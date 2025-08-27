@@ -1361,9 +1361,14 @@
             const iframe = document.getElementById('excelFrame');
             
             // 使用 Microsoft Office Online 查看器
-            const excelUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + 
-                            encodeURIComponent(window.location.origin + '/北九州五日行程單.xlsx');
+            //const excelUrl = 'https://view.officeapps.live.com/op/embed.aspx?src=' + 
+            //               encodeURIComponent(window.location.origin + '/北九州五日行程單.xlsx');
             
+            // 備用選項：Google Docs 查看器
+            const excelUrl = 'https://docs.google.com/gview?url=' + 
+                            encodeURIComponent(window.location.origin + '/北九州五日行程單.xlsx') + 
+                            '&embedded=true';
+
             iframe.src = excelUrl;
             modal.style.display = 'block';
             
