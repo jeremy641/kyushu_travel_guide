@@ -350,6 +350,38 @@
             border: 1px solid #bbf7d0;
         }
 
+            /* ---------- allocation-tag（你的重點） ---------- */
+            /* 深海綠漸層 + 白字 + 顯著陰影（醒目、利於站務員注意） */
+            .allocation-tag {
+            display:inline-block;
+            background: linear-gradient(135deg, #0f766e 0%, #054f4f 100%);
+            color: #ffffff;
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 800;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 12px 36px rgba(5,79,79,0.18);
+            text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+            letter-spacing: 0.2px;
+        }
+
+            /* hover focus 提示 */
+            .allocation-tag:hover,
+            .allocation-tag:focus {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 56px rgba(5,79,79,0.22);
+            outline: none;
+        }
+
+            /* 如果需要較小版本（例如右上 JR PASS badge） */
+            .allocation-tag.small {
+            padding: 6px 12px;
+            font-size: 0.86rem;
+            font-weight:700;
+            box-shadow: 0 6px 18px rgba(5,79,79,0.12);
+        }
+
         .note {
             color: #64748b;
             font-size: 0.95rem;
@@ -733,6 +765,7 @@
                             <div class="activity-title">博多 → 小倉</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR普通或快速（在來線）</div>
+                                <div class="allocation-tag">指定席劃位建議</div>
                             </div>
                             <div class="note">避開山陽新幹線，使用一般JR線路</div>
                         </div>
@@ -773,6 +806,7 @@
                             <div class="activity-title">皿倉山 → 博多</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR新幹線（指定席建議）</div>
+                                <div class="allocation-tag">指定席劃位建議</div>
                             </div>
                             <div class="note">結束充實的北九州一日遊</div>
                         </div>
@@ -793,6 +827,7 @@
                             <div class="activity-title">博多 → 長崎</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR特急Relay + 西九州新幹線</div>
+                                <div class="allocation-tag">指定席劃位建議</div>
                             </div>
                             <div class="note">約1.5小時，體驗最新的西九州新幹線</div>
                         </div>
@@ -813,6 +848,7 @@
                             <div class="activity-title">長崎 → 佐世保</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR特急/快速</div>
+                                <div class="allocation-tag">指定席劃位建議</div>
                             </div>
                             <div class="note">約1.5小時車程</div>
                         </div>
@@ -833,6 +869,7 @@
                             <div class="activity-title">佐世保 → 博多</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR特急みどり</div>
+                                <div class="allocation-tag">指定席劃位建議</div>
                             </div>
                             <div class="note">約2小時返回博多</div>
                         </div>
@@ -853,6 +890,7 @@
                             <div class="activity-title">博多 → 佐賀市觀光</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR</div>
+                                <div class="allocation-tag">指定席劃位建議</div>
                             </div>
                             <div class="note">參觀佐賀城本丸歷史館，了解佐賀藩的歷史</div>
                         </div>
@@ -1066,6 +1104,7 @@
                             <div class="activity-title">博多 → 小倉</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR普通・快速（在来線）</div>
+                                <div class="allocation-tag">指定席予約案内</div>
                             </div>
                             <div class="note">山陽新幹線を避けて、一般JR線利用</div>
                         </div>
@@ -1106,6 +1145,7 @@
                             <div class="activity-title">皿倉山 → 博多</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR新幹線（指定席推奨）</div>
+                                <div class="allocation-tag">指定席予約案内</div>
                             </div>
                             <div class="note">充実した北九州日帰り観光終了</div>
                         </div>
@@ -1126,6 +1166,7 @@
                             <div class="activity-title">博多 → 長崎</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR特急リレーかもめ + 西九州新幹線</div>
+                                <div class="allocation-tag">指定席予約案内</div>
                             </div>
                             <div class="note">約1.5時間、最新の西九州新幹線を体験</div>
                         </div>
@@ -1146,6 +1187,7 @@
                             <div class="activity-title">長崎 → 佐世保</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR特急・快速</div>
+                                <div class="allocation-tag">指定席予約案内</div>
                             </div>
                             <div class="note">約1.5時間</div>
                         </div>
@@ -1166,6 +1208,7 @@
                             <div class="activity-title">佐世保 → 博多</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR特急みどり</div>
+                                <div class="allocation-tag">指定席予約案内</div>
                             </div>
                             <div class="note">約2時間で博多へ戻る</div>
                         </div>
@@ -1186,6 +1229,7 @@
                             <div class="activity-title">博多 → 佐賀市観光</div>
                             <div class="activity-info">
                                 <div class="transport-tag">JR</div>
+                                <div class="allocation-tag">指定席予約案内</div>
                             </div>
                             <div class="note">佐賀城本丸歴史館見学、佐賀藩の歴史を学ぶ</div>
                         </div>
