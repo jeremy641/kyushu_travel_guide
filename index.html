@@ -353,25 +353,23 @@
             /* ---------- allocation-tag（你的重點） ---------- */
             /* 深海綠漸層 + 白字 + 顯著陰影（醒目、利於站務員注意） */
             .allocation-tag {
-            display:inline-block;
-            background: linear-gradient(135deg, #0f766e 0%, #054f4f 100%);
-            color: #ffffff;
-            padding: 8px 18px;
-            border-radius: 999px;
-            font-size: 0.95rem;
-            font-weight: 800;
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 12px 36px rgba(5,79,79,0.18);
-            text-shadow: 0 1px 0 rgba(0,0,0,0.2);
-            letter-spacing: 0.2px;
+            display: inline-block;
+            background: #fef3c7;
+            color: #92400e;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid #fde68a;
+            transition: all 0.2s ease;
+            position: relative;
         }
 
-            /* hover focus 提示 */
-            .allocation-tag:hover,
-            .allocation-tag:focus {
-            transform: translateY(-4px);
-            box-shadow: 0 24px 56px rgba(5,79,79,0.22);
-            outline: none;
+            .allocation-tag:hover {
+            background: #fef9e7;
+            border-color: #fcd34d;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(146, 64, 14, 0.1);
         }
 
             /* 如果需要較小版本（例如右上 JR PASS badge） */
